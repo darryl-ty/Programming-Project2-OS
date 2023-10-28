@@ -232,6 +232,7 @@ public class Main{
         GenerateProcesses(P);
         InitQueue(Q, P);
         InitQueue(PQ, P);
+//        InitQueue(PQD, P);
         Scanner sc = new Scanner(System.in);
         do
         {

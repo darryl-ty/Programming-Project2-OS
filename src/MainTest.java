@@ -24,7 +24,7 @@ class MainTest {
             val = 5 + (int)(Math.random() * 2);
             val2 = 5 + (int)(Math.random() * 60);
             P.setCycles(val); //Generate random cycle time
-            P.setArrivalTime(0);
+            P.setArrivalTime(i);
             P.setDeadline(val2);
             PQD.add(P);
             PQ.add(P);
