@@ -4,12 +4,12 @@ import java.util.*;
 
 
 
-class PCBDeadlineComparator implements Comparator<PCB>{
+class PCBArrivalTimeComparator implements Comparator<PCB>{
     @Override
     public int compare(PCB o1, PCB o2) {
-        if (Math.abs(o1.getArrivalTime() - o1.getDeadline()) < Math.abs(o2.getArrivalTime() - o2.getDeadline()))
+        if (o1.getArrivalTime() < o2.getArrivalTime())
             return -1;
-        else if (Math.abs(o1.getArrivalTime() - o1.getDeadline()) > Math.abs(o2.getArrivalTime() - o2.getDeadline()))
+        else if (o1.getArrivalTime()> o2.getArrivalTime())
             return 1;
         return 0;
     }
@@ -111,6 +111,7 @@ public class Main{
     }
 
     public static void EDF(PriorityQueue<PCB> PQD){
+        int time = -1;
         PCB p;
         while(!PQD.isEmpty()) {
             p = new PCB();
@@ -120,6 +121,15 @@ public class Main{
 
             //"Running" process here
             for(int i = p.getCycles(); i >= 0; i--) {
+                time++;
+
+                if(PQD.peek()!=null) {
+                    if (PQD.peek().getArrivalTime() == time && (PQD.peek().getDeadline() - time) < (p.getDeadline() - time)) {
+                        System.out.println("Process " + p.getID() + " preempted");
+                        PQD.add(p); //Add preempted process to back of queue
+                        break;
+                    }
+                }
                 if (p.getCycles() > 0) {
                     p.decrementCycles();
                     System.out.println(p.getCycles() + " cycles remain.");
@@ -216,7 +226,7 @@ public class Main{
         Queue<PCB> Q = new LinkedList<>();
         PriorityQueue<PCB> PQ = new PriorityQueue<>();
         // Initialize new PQD with Deadline comparator instead of cycles comparator
-        PriorityQueue<PCB> PQD = new PriorityQueue<>(new PCBDeadlineComparator());
+        PriorityQueue<PCB> PQD = new PriorityQueue<>(new PCBArrivalTimeComparator());
 
         InitializeProcesses(P);
         GenerateProcesses(P);

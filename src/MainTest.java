@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
 
-    private PriorityQueue<PCB> PQD = new PriorityQueue<>(new PCBDeadlineComparator());
+    private PriorityQueue<PCB> PQD = new PriorityQueue<>(new PCBArrivalTimeComparator());
     private PriorityQueue<PCB> PQ = new PriorityQueue<>();
     private Queue<PCB> Q = new LinkedList<>();
 
