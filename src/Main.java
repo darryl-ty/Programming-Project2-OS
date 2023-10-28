@@ -110,7 +110,7 @@ public class Main{
 
     }
 
-    public static void EDF(PriorityQueue<PCB> PQD){ //TODO -  Fix function
+    public static void EDF(PriorityQueue<PCB> PQD){
         PQD.clear();
 
         int val;
