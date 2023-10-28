@@ -1,0 +1,3 @@
+ID	cycles_remaining	arrival_time	deadline
+1	60	2	100
+2	7	5	10
