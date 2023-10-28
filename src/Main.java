@@ -7,9 +7,9 @@ import java.util.*;
 class PCBDeadlineComparator implements Comparator<PCB>{
     @Override
     public int compare(PCB o1, PCB o2) {
-        if (o1.getDeadline() < o2.getDeadline())
+        if (Math.abs(o1.getArrivalTime() - o1.getDeadline()) < Math.abs(o2.getArrivalTime() - o2.getDeadline()))
             return -1;
-        else if (o1.getDeadline() > o2.getDeadline())
+        else if (Math.abs(o1.getArrivalTime() - o1.getDeadline()) > Math.abs(o2.getArrivalTime() - o2.getDeadline()))
             return 1;
         return 0;
     }
