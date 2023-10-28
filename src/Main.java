@@ -111,27 +111,6 @@ public class Main{
     }
 
     public static void EDF(PriorityQueue<PCB> PQD){
-        PQD.clear();
-
-        int val;
-        for(int i = 0; i <= 5; i++) {
-            PCB P = new PCB();
-            P.setID(i);
-            val = 5 + (int)(Math.random() * 2);
-            int val2 = 5 + (int)(Math.random() * 60);
-            P.setCycles(val); //Generate random cycle time
-            P.setArrivalTime(0);
-            P.setDeadline(val2);
-            PQD.add(P);
-        }
-
-        System.out.println("Process ID\tDuration\tArrival Time\tDeadline");
-        System.out.println(" _______________________________________________________________________");
-        for (PCB process : PQD){
-            System.out.println(process.getID()+"\t"+process.getCycles()+"\t"+process.getArrivalTime()+"\t"+process.getDeadline());
-        }
-
-
         PCB p;
         while(!PQD.isEmpty()) {
             p = new PCB();
@@ -236,6 +215,7 @@ public class Main{
 
         Queue<PCB> Q = new LinkedList<>();
         PriorityQueue<PCB> PQ = new PriorityQueue<>();
+        // Initialize new PQD with Deadline comparator instead of cycles comparator
         PriorityQueue<PCB> PQD = new PriorityQueue<>(new PCBDeadlineComparator());
 
         InitializeProcesses(P);
